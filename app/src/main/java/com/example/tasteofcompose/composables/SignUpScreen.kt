@@ -21,12 +21,20 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewParameter
+import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 
 @Composable
-fun SignUpScreen() {
+fun SignUpScreen(navController: NavController?) {
+
+    val handleNav = {
+        navController?.let{it.navigate(Destinations.Login.name)}?:Unit
+    }
+
     Circle()
     Column (
         verticalArrangement = Arrangement.Bottom,
@@ -34,7 +42,7 @@ fun SignUpScreen() {
         modifier = Modifier
             .padding(80.dp)
     ){
-        SigLog("Sign Up", "Don't have an account?", " Log in")
+        SigLog("Sign Up", "Don't have an account?", " Log in", handleNav )
         NameTextField("Full name")
         EmailTextField("Email address")
         PasswordTextField("Password")
@@ -45,8 +53,9 @@ fun SignUpScreen() {
 
 }
 
+
 @Preview
 @Composable
-fun prev(){
-    SignUpScreen()
+fun prev(navController: NavController? = null){
+    SignUpScreen(navController)
 }

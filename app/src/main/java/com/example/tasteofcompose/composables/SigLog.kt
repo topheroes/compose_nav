@@ -11,13 +11,13 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun SigLog(vararg text: String){
+fun SigLog(headerText: String, hintText: String, buttonText: String, buttonHandler: ()->Unit){
     Row {
         Column {
-            Text(text = text[0], fontSize = 28.sp, fontWeight = FontWeight.Bold)
+            Text(text = headerText, fontSize = 28.sp, fontWeight = FontWeight.Bold)
             Row {
-                Text(text = text[1], fontSize = 12.sp)
-                Text(text = text[2], fontSize = 12.sp, color = Color(159,215,255),modifier = Modifier.clickable {  })
+                Text(text = hintText, fontSize = 12.sp)
+                Text(text = buttonText, fontSize = 12.sp, color = Color(0xFF0094FF),modifier = Modifier.clickable(onClick = buttonHandler))
             }
         }
     }
